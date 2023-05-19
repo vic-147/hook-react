@@ -1,0 +1,9 @@
+.Characters {
+  display: flex;
+  
+}
+
+.character {
+  width: 340px;
+  height: 340px;
+}
