@@ -1,14 +1,16 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState, useReducer, useMemo, useRef, useCallback } from "react";
+import Search from "./Search";
+import useCharacters from "../hooks/useCharacter";
 import "./Characters.css";
 
 const API = import.meta.env.VITE_API;
 
-// inicializar favoritos vacio
+// inicializar favoritos vacio - reducer
 const initialState = {
   favorites: [],
 };
 
-// agregar afavoritos
+// agregar afavoritos - reducer
 const favoritesReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_FAVORITE":
@@ -22,30 +24,58 @@ const favoritesReducer = (state, action) => {
 };
 
 const Characters = () => {
-  const [characters, setCharacters] = useState([]);
-  const [favorites, dispatch] = useReducer(favoritesReducer, initialState); // favoritos
+  const [favorites, dispatch] = useReducer(favoritesReducer, initialState); // favoritos - reducer
+  const [search, setSearch] = useState(""); // hacer busquedas - memo
+  const searchInput = useRef(null); // - useRef
 
-  useEffect(() => {
-    fetch(`${API}/character/`)
-      .then((response) => response.json())
-      .then((data) => setCharacters(data.results));
-  }, []);
+  // custom hook
+  const characters = useCharacters(API);
 
-  // afregar favorito handle
+  // afregar favorito handle - reducer
   const handleFavorite = (favorite) => {
     dispatch({ type: "ADD_TO_FAVORITE", payload: favorite });
   };
 
+  // evento de busqueda - memo
+  // const handleSearch = () => {
+  //   setSearch(searchInput.current.value);
+  // };
+
+  // mismmo evento de busqueda pero ahora con - useColback
+  const handleSearch = useCallback(() => {
+    setSearch(searchInput.current.value);
+  }, []); // callback
+
+  // filtardo de busqueda
+  // const filteredUser = characters.filter((user) => {
+  //   return user.name.toLowerCase().includes(serach.toLowerCase());
+  // });
+
+  // filtardo de busqueda usando memoizcion - memo
+  const filteredUser = useMemo(
+    () =>
+      characters.filter((user) => {
+        return user.name.toLowerCase().includes(search.toLowerCase());
+      }),
+    [characters, search]
+  );
+
   return (
     <>
-      <div>
+      <Search
+        search={search}
+        searchInput={searchInput}
+        handleSearch={handleSearch}
+      />
+
+      <div className="favorite">
         {favorites.favorites.map((favorite) => (
-          <li key={favorite.id}>{favorite.name}</li>
+          <img key={favorite.id} src={favorite.image} />
         ))}
       </div>
 
       <div className="Characters">
-        {characters.map((character) => (
+        {filteredUser.map((character) => (
           <div className="character" key={character.id}>
             <figure>
               <img src={character.image} alt="character.name" />
