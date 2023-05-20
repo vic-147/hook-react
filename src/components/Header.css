@@ -9,5 +9,42 @@ h1 {
 }
 
 button {
-  padding: 5px;
+  background-color: #fff;
+  font-weight: semibold;
+  color: #444; 
+  font-size: 1rem;
+  padding: 1rem , 1.5rem;
+  border-radius: .5rem;
+  border-color: #ccc;
+  cursor: pointer;
+	transition: all 1s ease;
+	box-shadow: .5rem .5rem 1rem #ccc
+		-.5rem -.5rem 1rem #fff;
+}
+
+button:hover {
+	box-shadow: .5rem .5rem 1rem #fff
+		-.5rem -.5rem 1rem #ccc;
+}
+button:active{
+	box-shadow: inset .5rem .5rem 1rem #fff
+		inset -.2rem -.2rem 1rem #ccc;
+}
+
+.darkOn {
+  background-color: #282c34;
+  color: #fff;
+  transition: all 1s ease;
+}
+
+.darkOn button {
+  background-color: #282c34;
+  color: #fff;
+  border-color: #282c34;
+}
+
+.darkOff {
+  background-color: #f0f0f0;
+  color: #444;
+  transition: all 1s ease;
 }

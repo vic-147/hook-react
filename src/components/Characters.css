@@ -1,9 +1,36 @@
 .Characters {
   display: flex;
-  
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .character {
-  width: 340px;
-  height: 340px;
+  width: 324px;
+  height: 424px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 1px 5px 5px #ccc;
+  margin: 10px;
+}
+
+figure {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 320px;
+  height: 300px;
+  border-radius: 10px;
+  
+}
+
+h2 {
+  margin: 10px;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-around;
 }

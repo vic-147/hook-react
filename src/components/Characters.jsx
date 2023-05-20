@@ -16,7 +16,14 @@ const Characters = () => {
     <div className="Characters">
       {characters.map((character) => (
         <div className="character" key={character.id}>
+          <figure>
+            <img src={character.image} alt="character.name" />
+          </figure>
           <h2>{character.name}</h2>
+          <div className="detail">
+            <p>Status: {character.status}</p>
+            <p>Specie: {character.species}</p>
+          </div>
         </div>
       ))}
     </div>
