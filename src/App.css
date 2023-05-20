@@ -1,15 +1,4 @@
 html {
-  background-color: #f0f0f0;
-}
-
-.darkOn {
-  background-color: #282c34;
-  color: #fff;
-  transition: all 1s ease;
-}
-
-.darkOn button {
-  background-color: #282c34;
-  color: #fff;
-  border-color: #282c34;
+  background-color: aliceblue;
+  color: #000;
 }

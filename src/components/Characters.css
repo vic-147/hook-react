@@ -28,9 +28,16 @@ img {
 
 h2 {
   margin: 10px;
+  color: #333;
 }
 
 .detail {
+  color: #333;
   display: flex;
   justify-content: space-around;
+}
+
+button:hover {
+  background-color: tomato;
+  color: #fff;
 }

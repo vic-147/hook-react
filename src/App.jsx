@@ -1,14 +1,19 @@
-import { RickProvider } from "./context";
+import { useContext } from "react";
+import { RickContext } from "./context";
 import Header from "./components/Header";
 import Characters from "./components/Characters";
 import "./App.css";
 
 function App() {
+  const { darkMode } = useContext(RickContext);
+
+  darkMode ? "darkOn" : "darkOff";
+
   return (
-    <RickProvider>
+    <div className={`${darkMode ? "darkOn" : "darkOff"}`}>
       <Header />
       <Characters />
-    </RickProvider>
+    </div>
   );
 }
 

@@ -9,10 +9,8 @@ const Header = () => {
     handleClickDarkMode(event);
   };
 
-  const colorSchema = darkMode ? "darkOff" : "darkOn";
-
   return (
-    <div className={`container ${colorSchema}`}>
+    <div className="container">
       <h1>ReactHooks</h1>
       <button type="button" onClick={(event) => handleDark(event)}>
         {darkMode ? "Dark Mode" : "Light Mode"}
